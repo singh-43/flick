@@ -1,0 +1,149 @@
+.moviesCollection {
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    .moviesCollectionBackdrop {
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        border-radius: 20px;
+        padding-bottom: 0px;
+        opacity: 0.3;
+        height: 180px;
+        background-color: brown;
+        .posterImg {
+            height: 180px;
+            border-radius: 10px;
+            object-position: top;
+        }
+    }
+    .moviesCollectionInfo {
+        position: absolute;
+        top: 30px;
+        margin-left: 10px;
+        line-height: 1.05;
+        width: 85%;
+        .collectionName {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .moviesNames {
+            margin-top: 5px;
+            font-size: 16px;
+        }
+        .viewCollection {
+            margin-top: 10px;
+            padding: 6px 8px;
+            font-size: 14px;
+            font-weight: bold;
+            background-color: gray;
+            width: fit-content;
+            border-radius: 20px;
+            &:hover {
+                background-color: black;
+                cursor: pointer;
+            }
+        }
+        .ellipses {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+    .moviesCollectionSkeleton {
+        height: 260px;
+        width: 100%;
+        border-radius: 12px;
+    }
+}
+
+@media only screen and (min-width: 450px) {
+    .moviesCollection {
+        .moviesCollectionBackdrop {
+            height: 200px;
+            .posterImg {
+                height: 200px;
+                border-radius: 10px;
+                object-position: top;
+            }
+        }
+        .moviesCollectionInfo {
+            width: 88%;
+            top: 10px;
+            line-height: 1.2;
+            margin-left: 15px;
+            .collectionName {
+                font-size: 22px;
+                font-weight: bold;
+            }
+            .moviesNames {
+                margin-top: 5px;
+                font-size: 17px;
+                &.ellipses {
+                    display: -webkit-box;
+                    -webkit-line-clamp: 4;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+            .viewCollection {
+                margin-top: 10px;
+                padding: 6px 8px;
+                font-size: 16px;
+                font-weight: bold;
+                background-color: gray;
+                width: fit-content;
+                border-radius: 20px;
+                &:hover {
+                    background-color: black;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 700px) {
+    .moviesCollection {
+        .moviesCollectionBackdrop {
+            height: 260px;
+            .posterImg {
+                height: 260px;
+            }
+        }
+        .moviesCollectionInfo {
+            top: 50px;
+            line-height: 1.05;
+            margin-left: 25px;
+            width: 88%;
+            .collectionName {
+                font-size: 26px;
+                font-weight: bold;
+            }
+            .moviesNames {
+                margin-top: 10px;
+                font-size: 20px;
+            }
+            .viewCollection {
+                margin-top: 20px;
+                padding: 6px 8px;
+                font-size: 18px;
+                font-weight: bold;
+                background-color: gray;
+                width: fit-content;
+                border-radius: 20px;
+                &:hover {
+                    background-color: black;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1250px) {
+    .moviesCollection {
+        .moviesCollectionInfo {
+            width: 70%;
+        }
+    }
+}

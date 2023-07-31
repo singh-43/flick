@@ -1,0 +1,204 @@
+.seasonCollection {
+    position: relative;
+    margin-top: 20px;
+    .heading {
+        font-size: 22px;
+        margin-bottom: 20px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .seasonCollectionItem {
+        display: flex;  
+        flex-direction: column;             
+        gap: 10px;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        .ItemsLeft {
+            flex-shrink: 0;
+            >:first-child {
+                height: 100%;
+                width: 100%;
+                .posterImg {
+                    cursor: pointer;
+                    height: 100%;
+                    width: 100%;
+                    display: block;
+                    border-radius: 10px;
+                    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+                }
+            }
+        }
+        .ItemsRight {
+            line-height: 1.2;
+            .heading_n_rating {
+                margin-bottom: 5px;
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                .name {
+                    font-size: 20px;
+                    cursor: pointer;
+                    &:hover {
+                        opacity: 0.5;
+                    }
+                }
+                .rating {
+                    align-self: flex-start;
+                    width: fit-content;
+                    background-color: var(--pink);
+                    border-radius: 10px;
+                    padding: 2px 4px;
+                    padding-right: 8px;
+                    font-size: 15px;
+                }
+            }
+            .date {
+                font-size: 16px;
+                opacity: 0.5;
+                margin-bottom: 15px;
+            }
+            .overview {
+                font-size: 15px;
+                .premiere {
+                    opacity: 0.7;
+                    margin-bottom: 5px;
+                }
+                .description {
+                    font-size: 16.5px;
+                    &.ellipsis {
+                        display: -webkit-box;
+                        -webkit-line-clamp: 4;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                }
+            }
+        }
+    }
+    .bottom {
+        margin-top: 20px;
+        font-size: 17px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+        &:hover {
+            cursor: pointer;
+            color: var(--pink);
+        }
+    }
+    .collectionSkeleton {
+        margin-bottom: 20px;
+        .heading {
+            .row {
+                width: 150px;
+                height: 15px;
+                border-radius: 50px;
+            }
+        }
+        .left {
+            flex-shrink: 0;
+            width: 100%;
+            display: block;
+            border-radius: 12px;
+            aspect-ratio: 1/1.5;
+        }
+        .right {
+            padding-top: 10px;
+            width: 100%;
+            .row {
+                width: 150px;
+                height: 15px;
+                margin-bottom: 15px;
+                border-radius: 50px;
+                &:nth-child(2) {
+                    margin-bottom: 30px;
+                }
+            }
+            .row1 {
+                width: 100%;
+                height: 16px;
+                margin-bottom: 15px;
+                border-radius: 50px;
+            }
+        }
+        .bottom {
+            .row {
+                width: 150px;
+                height: 12px;
+                border-radius: 50px;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .seasonCollection {
+        .heading {
+            font-size: 24px;
+        }
+        .seasonCollectionItem {             
+            border-radius: 10px;
+            padding: 10px;
+            flex-direction: row;
+            gap: 0px;
+            .ItemsLeft {
+                height: 200px;
+                display: flex;
+                .posterImg {
+                    height: 200px;
+                    width: max-content;
+                    border-radius: 10px;
+                    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+                }
+            }
+            .ItemsRight {
+                align-self: center;
+                padding-left: 15px;
+                .heading_n_rating {
+                    gap: 0px;
+                    flex-direction: row;
+                    margin-bottom: 5px;
+                    .name {
+                        font-size: 23px;
+                        margin-bottom: 0px;
+                    }
+                    .rating {
+                        align-self: center;
+                        margin-left: 15px;
+                        padding: 2px 4px;
+                        padding-right: 8px;
+                        font-size: 16px;
+                    }
+                }
+                .date {
+                    font-size: 16px;
+                    margin-bottom: 10px;
+                }
+                .overview {
+                    font-size: 16px;
+                    .premiere {
+                        margin-bottom: 5px;
+                    }
+                    .description {
+                        font-size: 17.5px;
+                    }
+                }
+            }
+        }
+        .bottom {
+            font-size: 18px;
+        }
+    }
+    .collectionSkeleton {
+        .left {
+            height: 200px;
+            max-width: 133px;
+        }
+        .right {
+            align-self: center;
+            padding: 0px 15px;
+        }
+    }
+}

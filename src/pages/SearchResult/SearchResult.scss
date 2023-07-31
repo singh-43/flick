@@ -1,0 +1,44 @@
+.searchResultsPage {
+    min-height: 700px;
+    padding-top: 100px;
+    margin-bottom: 20px;
+    .resultNotFound {
+        font-size: 24px;
+        color: var(--black-light);
+        display: flex;
+        flex-direction: column;
+        .NoResult {
+            height: 800px;
+        }
+    }
+    .spinner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .pageTitle {
+        font-size: 24px;
+        line-height: 34px;
+        color: white;
+        margin-right: 15px;
+        margin-bottom: 10px;
+    }
+    .content {
+        display: flex;
+        flex-flow: row wrap;
+        gap: 10px;
+        margin-bottom: 50px;
+    }
+}
+
+@media only screen and (min-width: 700px) {
+    .searchResultsPage {
+        .new {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .content {
+            gap: 20px;
+        }
+    }
+}

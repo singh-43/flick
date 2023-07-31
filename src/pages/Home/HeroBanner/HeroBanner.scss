@@ -1,0 +1,162 @@
+.heroBanner {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 680px;
+    user-select: none;
+}
+
+.backdrop-img {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 680px;
+    opacity: 0.5;
+    overflow: hidden;
+}
+
+.lazy-load-image-background {
+    width: 100%;
+    height: 100%;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.heroBanner-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center ;
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 85px;
+    font-weight: bolder;
+    margin-bottom: 10px;
+}
+
+.subTitle {
+    font-size: 24px;
+    margin-bottom: 22px;
+}
+
+.searchInput {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+input {
+    width: calc(100% - 150px);
+    height: 60px;
+    background-color: white;
+    outline: 0;
+    border: 0;
+    border-radius: 30px 0 0 30px;
+    padding: 0 30px;
+    font-size: 20px;
+}
+
+button {
+    width: 150px;
+    height: 60px;
+    background: #1E90FF;
+    outline: 0;
+    border: 0;
+    border-radius: 0 30px 30px 0;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.opacity-layer {
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(
+        180deg,
+        rgba(4, 21, 45, 0) 0%,
+        #04152d 79.17%
+    );
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.movieTitle {
+    font-size: 25px;
+    font-weight: 800;
+    position: absolute;
+    bottom: 50px;
+    right: 20px;
+    text-align: right;
+    cursor: pointer;
+    &:hover {
+        color: var(--pink);
+    }
+}
+
+
+@media only screen and (max-width: 400px){
+    .heroBanner {
+        height: 420px;
+    }
+    
+    .backdrop-img {
+        height: 420px;
+    }
+
+    img {
+        object-fit: cover;
+    }
+
+    .title {
+        font-size: 50px;
+        font-weight: bolder;
+    }
+
+    .subTitle {
+        font-size: 20px;
+    }
+
+    input {
+        width: calc(100% - 80px);
+        height: 45px;
+        padding: 0 15px;
+        font-size: 15px;
+    }
+    
+    button {
+        width: 80px;
+        height: 45px;
+        font-size: 15px;
+        cursor: pointer;
+    }
+
+    .movieTitle {
+        font-size: 16px;
+        bottom: 45px;
+        font-weight: 750;
+        right: 10px;
+        text-align: center;
+    }
+}
+
+@media only screen and (min-width: 401px) and (max-width: 960px) {
+    .heroBanner-content {
+        max-width: 700px;
+    }
+}
+
+
+
+
+
+

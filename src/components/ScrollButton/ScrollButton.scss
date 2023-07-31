@@ -1,0 +1,24 @@
+.scrollButton {
+    cursor: pointer;
+    background-color: #D22B2B;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    height: 38px;
+    width: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    >:first-child {
+        padding: 10px;
+    }
+    &:hover {
+        background-color:#8B0000;
+    }
+}
+
+.hide {
+    display: none;
+}

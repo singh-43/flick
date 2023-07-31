@@ -1,0 +1,22 @@
+.CollectionCast {
+    position: relative;
+    margin-bottom: 20px;
+    .featuredCastCrew {
+        margin-bottom: 20px;
+        .title {
+            font-size: 22px;
+            margin-bottom: 20px;
+            font-weight: normal;
+        }
+        .cast_crew {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(275px, 275px));
+            // grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+            grid-gap: 1rem;
+        }
+    }
+    .line {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 30px;
+    }
+}

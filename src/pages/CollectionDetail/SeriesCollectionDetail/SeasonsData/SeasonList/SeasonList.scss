@@ -1,0 +1,97 @@
+.seasonList {
+    margin-bottom: 20px;
+    .seasonListItem {
+        display: flex;  
+        flex-direction: row;             
+        gap: 15px;
+        border-radius: 20px;
+        .ItemsLeft {
+            height: 140px;
+            flex-shrink: 0;
+            >:first-child {
+                height: 180px;
+                width: max-content;
+                .posterImg {
+                    cursor: pointer;
+                    height: 140px;
+                    width: 100%;
+                    display: block;
+                    border-radius: 5px;
+                    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+                }
+            }
+        }
+        .ItemsRight {
+            line-height: 1.2;
+            .heading_n_rating {
+                margin-bottom: 5px;
+                display: flex;
+                flex-direction: row;
+                flex-flow: row wrap;
+                align-items: baseline;
+                gap: 10px;
+                .name {
+                    cursor: pointer;
+                    font-size: 20px;
+                    &:hover {
+                        opacity: 0.5;
+                    }
+                }
+                .rating {
+                    align-self: flex-start;
+                    width: fit-content;
+                    background-color: var(--pink);
+                    border-radius: 10px;
+                    padding: 2px 4px;
+                    padding-right: 8px;
+                    font-size: 15px;
+                }
+                .date {
+                    font-size: 16px;
+                    opacity: 0.5;
+                    margin-bottom: 5px;
+                }
+            }
+            .overview {
+                font-size: 16px;
+                .premiere {
+                    opacity: 0.7;
+                    margin-bottom: 8px;
+                }
+                .description {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 700px) {
+    .seasonList {
+        .seasonListItem {
+            .ItemsLeft {
+                height: 180px;
+                >:first-child {
+                    height: 180px;
+                    .posterImg {
+                        height: 180px;
+                        border-radius: 8px;
+                    }
+                }
+            }
+            .ItemsRight {
+                align-self: center;
+                .heading_n_rating {
+                    .name {
+                        font-size: 21px;
+                    }
+                }
+                .overview {
+                    .description {
+                        font-size: 16.5px;
+                    }
+                }
+            }
+        }
+    }   
+}

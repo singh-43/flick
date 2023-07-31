@@ -1,0 +1,103 @@
+.episodeItem {
+    margin-bottom: 20px;
+    display: flex;    
+    flex-direction: column;          
+    gap: 10px;
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    .ItemsLeft {
+        flex-shrink: 0;
+        height: fit-content;
+        >:first-child {
+            height: fit-content;
+            width: 100%;
+            .posterImg {
+                height: fit-content;
+                width: 100%;
+                display: block;
+                border-radius: 10px;
+                box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+            }
+        }
+    }
+    .ItemsRight {
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        line-height: 1.2;
+        padding-right: 15px;
+        .episodeInfo {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 5px;
+            .seriesName {
+                font-size: 18px;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+            .moreInfo {
+                display: flex;
+                gap: 5px;
+                opacity: 0.5;
+            }
+        }
+        .overview {
+            font-size: 16px;
+        }
+    }
+}
+.line {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 20px;
+}
+
+@media only screen and (min-width: 600px){
+    .episodeItem {
+        flex-direction: row;
+        gap: 20px;
+        .ItemsLeft {
+            flex-shrink: 0;
+            align-self: center;
+            height: 150px;
+            >:first-child {
+                height: 150px;
+                width: 100%;
+                .posterImg {
+                    height: 150px;
+                    width: 260px;
+                    display: block;
+                    border-radius: 5px;
+                    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+                }
+            }
+        }
+        .ItemsRight {
+            display: flex;
+            flex-direction: column;
+            align-self: center;
+            line-height: 1.2;
+            padding-right: 15px;
+            width: 100%;
+            .episodeInfo {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                margin-bottom: 5px;
+                flex-flow: row wrap;
+                .seriesName {
+                    font-size: 18px;
+                    font-weight: bold;
+                    margin-right: 10px;
+                    flex-flow: row wrap;
+                }
+                .moreInfo {
+                    margin-bottom: 6px;
+                }
+            }
+            .overview {
+                font-size: 17px;
+            }
+        }
+    }
+}

@@ -1,0 +1,192 @@
+.moviesCollectionDetails {
+    position: relative;
+    width: 100%;
+    background-color: var(--black);
+    padding-top: 100px;
+    margin-bottom: 20px;
+    .backdrop-img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0.1;
+        overflow: hidden;
+        .lazy-load-image-background {
+            width: 100%;
+            height: 100%;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+    }
+    .opacity-layer {
+        width: 100%;
+        height: 250px;
+        background: linear-gradient(
+            180deg,
+            rgba(4, 21, 45, 0) 0%,
+            #04152d 79.17%
+        );
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+    .moviesCollectionDetailsItems {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        gap: 25px;
+        .moviesCollectionDetailsLeft {
+            flex-shrink: 0;
+            aspect-ratio: 1/1.5;
+            .posterImg {
+                height: max-content;
+                width: 100%;
+                display: block;
+                border-radius: 12px;
+                box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+            }
+        }
+        .moviesCollectionDetailsRight{
+            .title {
+                font-size: 28px;
+                line-height: 40px;
+            }
+            .overview {
+                margin-bottom: 0px;
+                .heading {
+                    font-size: 24px;
+                    margin-bottom: 10px;
+                }
+                .description {
+                    line-height: 24px;
+                }
+            }
+            .rating_genres {
+                display: flex;
+                flex-direction: column;
+                .rating {
+                    width: fit-content;
+                    padding: 4px 4px;
+                    font-size: 14.5px;
+                    border: 1px solid white;
+                    border-radius: 5px;
+                    margin-bottom: 10px;
+                }
+            }
+            .genres {
+                margin-bottom: 25px;
+                flex-flow: row wrap;
+                .genre {
+                    padding: 4px 6px;
+                    font-size: 14px;
+                }
+            }
+            .rating {
+                margin-bottom: 25px;
+            }
+            .circleRating {
+                max-width: 65px;
+                background-color: var(--black2);
+                .CircularProgressbar-text {
+                    fill: white;
+                }
+            }
+            .info {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                padding: 15px 0;
+                display: flex;
+                .infoItem {
+                    margin-right: 10px;
+                    display: flex;
+                    flex-flow: row wrap;
+                }
+                .text {
+                    margin-right: 10px;
+                    opacity: 0.5;
+                    line-height: 24px;
+                    &.bold {
+                        font-weight: 600;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+    .moviesCollectionDetailsSkeleton {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        gap: 25px;
+        .contentWrapper {
+            display: flex;
+            gap: 50px;
+        }
+        .left {
+            flex-shrink: 0;
+            width: 100%;
+            display: block;
+            border-radius: 12px;
+            aspect-ratio: 1/1.5;
+        }
+        .right {
+            width: 100%;
+            .row {
+                width: 100%;
+                height: 25px;
+                margin-bottom: 20px;
+                border-radius: 50px;
+                &:nth-child(2) {
+                    width: 75%;
+                    margin-bottom: 50px;
+                }
+                &:nth-child(5) {
+                    width: 50%;
+                    margin-bottom: 50px;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 750px) {
+    .moviesCollectionDetails {
+        margin-bottom: 0;
+        padding-top: 120px;
+        min-height: 700px;
+        .moviesCollectionDetailsItems {
+            gap: 50px;
+            flex-direction: row;
+            .moviesCollectionDetailsLeft {
+                .posterImg {
+                    width: 350px;
+                }
+            }
+            .moviesCollectionDetailsRight {
+                .title {
+                    font-size: 34px;
+                    line-height: 44px;
+                }
+                .overview {
+                    .description {
+                        padding-right: 100px;
+                    }
+                }
+                .circleRating {
+                    max-width: 80px;
+                }
+            }
+        }
+    }
+    .moviesCollectionDetailsSkeleton {
+        gap: 50px;
+        flex-direction: row;
+        .left {
+            max-width: 350px;
+        }
+    }
+}
