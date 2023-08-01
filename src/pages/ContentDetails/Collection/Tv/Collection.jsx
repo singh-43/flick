@@ -7,7 +7,7 @@ import NoPosterImg from "../../../../assets/images/no-poster.png";
 import dayjs from 'dayjs';
 import ContentWrapper from '../../../../components/contentWrapper/ContentWrapper';
 
-const Collection = ({  loading, next_episode_to_air, series_name, series_id, status, data }) => {
+const Collection = ({  loading, first_air_date, next_episode_to_air, series_name, series_id, status, data }) => {
 
     const navigate = useNavigate();
 
@@ -17,9 +17,12 @@ const Collection = ({  loading, next_episode_to_air, series_name, series_id, sta
                 {
                     loading === false ?
                     (
+                        // { ( ( status === "Returning Series" ) && ( dayjs().format("YYYY-MM-DD") < dayjs(data?.air_date).format("YYYY-MM-DD") && (next_episode_to_air !== null && next_episode_to_air !== 0 && next_episode_to_air !== "" && next_episode_to_air?.length !== 0 && next_episode_to_air?.season_number === data?.season_number) )  ) ? "Current Season" : "Last Season" }
                         <>
                             <div className='heading'>
-                                { ( ( status === "Returning Series" ) && ( next_episode_to_air !== null && next_episode_to_air !== 0 && next_episode_to_air !== "" && next_episode_to_air?.length !== 0 && next_episode_to_air?.season_number === data?.season_number )  ) ? "Current Season" : "Last Season" }
+                                { (data?.status === "Cancelled" || data?.status === "Canceled" || data?.status === "Ended"
+                                    || next_episode_to_air === null || next_episode_to_air?.season_number !== data?.season_number
+                                ) ? `Last Season` : `Current Season` }
                             </div>
                             <div className='seasonCollectionItem'>
                                 <div className='ItemsLeft'
@@ -67,7 +70,7 @@ const Collection = ({  loading, next_episode_to_air, series_name, series_id, sta
                                     <div className='overview'>
                                         {
                                             ( data?.air_date !== 0 && data?.air_date?.length !== 0 && data?.air_date !== "" && data?.air_date !== null ) ?
-                                                <div className='premiere'>{`Season ${data?.season_number} of ${series_name} premiered on `}{ dayjs(data?.air_date).format("MMMM DD, YYYY") }. </div>
+                                                <div className='premiere'>{`Season ${data?.season_number} of ${series_name} ${ dayjs().format("YYYY-MM-DD") > dayjs(data?.air_date).format("YYYY-MM-DD") ? `premiered on ` : `is set to premiere on ` }`}{ dayjs(data?.air_date).format("MMMM DD, YYYY") }. </div>
                                                 :
                                                 null
                                         } 

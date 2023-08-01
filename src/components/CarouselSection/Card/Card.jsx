@@ -40,7 +40,12 @@ const Card = ({ data, endpoint }) => {
         />
         <div className='genrate'>
           <CircleRating rating={ data?.vote_average !== 0 ? data?.vote_average?.toFixed(1) : "NA" } />
-          <Genres data={data?.genre_ids?.slice(0, 2)} />
+          {
+            data?.genre_ids?.length > 2 ?
+            <Genres data={data.genre_ids.slice(0, 2)} />
+            :
+            <Genres data={data.genre_ids} />
+          }
         </div>
       </div>
       <figcaption className='cardInfo'>

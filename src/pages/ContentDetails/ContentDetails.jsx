@@ -16,7 +16,6 @@ import MoviesCollection from "./Collection/Movies/Collection";
 const ContentDetails = () => {
 
     const { id, mediaType } = useParams();
-    const [countryName, setCountryName] = useState('')
 
     const { data, loading } = useFetch(`/${mediaType}/${id}`);
     const { data: credits, loading: creditsLoading } = useFetch(`/${mediaType}/${id}/credits`);
@@ -29,33 +28,22 @@ const ContentDetails = () => {
         data?.seasons?.sort((a, b)=> a?.season_number - b?.season_number  || a.season_number.localeCompare(b.season_number));
     }
 
-    const getGeoInfo = () => {
-        axios.get('https://ipapi.co/json/').then((response) => {
-            let data = response.data;
-            setCountryName(data?.country_name);
-        }).catch((error) => {
-            console.log(error);
-        });
-    };
-
-    let code = countries?.find(country => country.name === countryName)?.code;
-
     let collectionSeason;
     if(mediaType === "tv"){
-        collectionSeason = data?.seasons?.filter((f) => f.season_number === data?.last_episode_to_air?.season_number);
+        if(data?.seasons?.length > 1){
+            collectionSeason = data?.seasons?.filter((f) => f.season_number === data?.last_episode_to_air?.season_number);
+        }else {
+            collectionSeason = data?.seasons
+        }
     }
-
-    useEffect(() => {
-        getGeoInfo();
-    },[])
 
     return (
         <div>
             {
                 mediaType === "movie" ?
-                <MovieDetails code={code} data={data} loading={loading} videos={video} credits={credits} id={id} />
+                <MovieDetails data={data} loading={loading} videos={video} credits={credits} id={id} />
                     :
-                <SeriesDetails data={data} code={code} loading={loading} videos={video} credits={credits} id={id}  />
+                <SeriesDetails data={data} loading={loading} videos={video} credits={credits} id={id}  />
             }
             <Cast data={credits?.cast} loading={creditsLoading} />
             {
@@ -69,7 +57,7 @@ const ContentDetails = () => {
                 mediaType === "movie" ?
                 data?.belongs_to_collection != null && <MoviesCollection id={data?.belongs_to_collection?.id} /> 
                 :
-                <SeriesCollection loading={loading} next_episode_to_air={data?.next_episode_to_air} series_name={data?.name} series_id={data?.id} status={data?.status} data={collectionSeason?.[0]} />
+                <SeriesCollection loading={loading} first_air_date={data?.first_air_date} next_episode_to_air={data?.next_episode_to_air} series_name={data?.name} series_id={data?.id} status={data?.status} data={collectionSeason?.[0]} />
             }
             <Similar mediaType={mediaType} id={id} />
             <Recommendations mediaType={mediaType} id={id} />

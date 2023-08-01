@@ -51,11 +51,9 @@ const OfficialVideos = ({ data, loading }) => {
         ))
     )
     video?.sort((a, b)=> !b.published_at - !a.published_at || b.published_at.localeCompare(a.published_at));
-    console.log(video);
 
     useEffect(() => {
         //eslint-disable-next-line
-        video = [];
         setContainer([]);
         fetchInitialData();
         //eslint-disable-next-line

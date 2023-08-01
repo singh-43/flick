@@ -42,14 +42,32 @@
         flex-direction: column;
         gap: 25px;
         .left {
+            display: flex;
+            flex-direction: column;
             flex-shrink: 0;
             aspect-ratio: 1/1.5;
-            .posterImg {
-                height: max-content;
-                width: 100%;
-                display: block;
-                border-radius: 12px;
-                box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+            >:first-child {
+                height: fit-content;
+                .posterImg {
+                    height: max-content;
+                    width: 100%;
+                    display: block;
+                    border-radius: 12px;
+                    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+                }
+            }
+            .play_movie {
+                position: relative;
+                cursor: pointer;
+                text-align: center;
+                background-image: var(--gradient);
+                padding: 10px;
+                border-radius: 0 0 12px 12px;
+            }
+            .round{
+                &.posterImg{
+                    border-radius: 12px 12px 0px 0px;
+                }
             }
         }
         .right {
@@ -219,9 +237,12 @@
             flex-direction: row;
             .left {
                 width: 350px;
-                .posterImg {
-                    width: 350px;
-                    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+                :first-child {
+                    height: fit-content;
+                    .posterImg {
+                        width: 350px;
+                        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+                    }
                 }
             }
             .right {

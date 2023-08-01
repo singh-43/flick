@@ -12,14 +12,15 @@ import { useNavigate, useParams } from 'react-router';
 import useFetch from '../../../../hooks/useFetch';
 import { ReadMore } from '../../../../utils/constants';
 
-const DetailsBanner = ({ code, data, loading, videos, credits, id }) => {
+const DetailsBanner = ({ data, loading, videos, credits, id }) => {
 
     useEffect(() => {
         window.scrollTo(0,0);
     },[])
+    // console.log(data)
 
-    let { title } = useParams();
-    title = title?.split('-').join(' ')
+    let { name } = useParams();
+    name = name?.split('-').join(' ')
 
     const navigate = useNavigate();
     const genres = data?.genres?.map((g) => g.id);
@@ -42,43 +43,44 @@ const DetailsBanner = ({ code, data, loading, videos, credits, id }) => {
         ))
     }
 
-    let video = '', trailerFound = 0, certificationFound = 0;
+    let video = '', trailerFound = 0, certificationFound = 0, NAForIndia = 0, NAForUSA = 0, NAForJapan = 0;
     let certification = "";
     const { data: rating, loading: rating_loading } = useFetch(`/tv/${id}/content_ratings`);
+    console.log(rating?.results)
     
     if(rating_loading === false && loading === false){
         for(let i=0; i<rating?.results?.length; i++){
-            if(rating?.results?.[i]?.iso_3166_1 === code){
+            if(rating?.results?.[i]?.iso_3166_1 === "IN"){
                 if(rating?.results?.[i]?.rating){
                     certificationFound = 1;
+                    NAForIndia = 1;
                     certification = rating?.results?.[i]?.rating;
                     break;
                 }
             }
-        }
-        if(!certificationFound){
+        }if(certificationFound === 0 && NAForIndia === 0){
             for(let i=0; i<rating?.results?.length; i++){
-                code="US";
-                if(rating?.results?.[i]?.iso_3166_1 === code){
+                if(rating?.results?.[i]?.iso_3166_1 === "US"){
                     if(rating?.results?.[i]?.rating){
                         certificationFound = 1;
+                        NAForUSA === 0
                         certification = rating?.results?.[i]?.rating;
                         break;
                     }
                 }
             }
-        }else if(!certificationFound){
+        }else if(certificationFound === 0 && NAForIndia === 0 && NAForUSA === 0){
             for(let i=0; i<rating?.results?.length; i++){
-                code="JP";
-                if(rating?.results?.[i]?.iso_3166_1 === code){
+                if(rating?.results?.[i]?.iso_3166_1 === "JP"){
                     if(rating?.results?.[i]?.rating){
                         certificationFound = 1;
+                        NAForJapan === 0;
                         certification = rating?.results?.[i]?.rating;
                         break;
                     }
                 }
             }
-        }else{
+        }else if(certificationFound === 0 && NAForIndia === 0 && NAForUSA === 0 && NAForJapan === 0 ){
             if(rating?.results?.[0]?.rating){
                 certification = rating?.results?.[0]?.rating;
             }
@@ -139,18 +141,29 @@ const DetailsBanner = ({ code, data, loading, videos, credits, id }) => {
                                 <div className="content">
                                     <div className="left">
                                         <Img
-                                            className="posterImg"
+                                            className={`posterImg ${data?.last_air_date !== null ? 'round' : null }`}
                                             src={
                                                 data?.poster_path ?
                                                 url + data?.poster_path
                                                 :
                                                 NoPosterImg
                                             }
-                                        />
+                                        />      
+                                        {
+                                            data?.last_air_date !== null &&
+                                            <div className='play_movie'
+                                                onClick={() => {
+                                                    let seriesName = name?.split(': ').join('-').split(' ').join('-').split('--').join('').split(':').join('-').split('.-').join('-');
+                                                    navigate(`/series/${id}/${seriesName}/streaming-online`)
+                                                }}
+                                            >
+                                                Watch Online
+                                            </div>
+                                        }                                  
                                     </div>
                                     <div className="right">
                                         <div className="title">
-                                            { data.title ? `${data.title} ` : `${title} `}
+                                            { data?.name ? `${data.name} ` : `${name} `}
                                             { data?.first_air_date ? `(${dayjs(data?.first_air_date).format("YYYY")})` : null }
                                         </div>
                                         <div className="subtitle">

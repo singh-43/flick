@@ -12,15 +12,17 @@ import { useNavigate, useParams } from 'react-router';
 import useFetch from '../../../../hooks/useFetch';
 import { ReadMore } from '../../../../utils/constants';
 
-const DetailsBanner = ({ code, data, loading, videos, credits, id }) => {
+const DetailsBanner = ({ data, loading, videos, credits, id }) => {
 
     useEffect(() => {
         window.scrollTo(0,0);
     },[])
 
-    let { title } = useParams();
-    title = title?.split('-').join(' ');
-    let video = '', trailerFound = 0, releaseDateFound = 0, certificationFound=0;
+    let code ="IN";
+
+    let { name } = useParams();
+    name = name?.split('-').join(' ');
+    let video = '', trailerFound = 0, releaseDateFound = 0, NAForIndia = 0, NAForUSA = 0, NAForJapan = 0, certificationFound=0, NAForIndia1 = 0, NAForUSA1 = 0, NAForJapan1 = 0;
     let releaseDate = "";
     let certification = "";
 
@@ -47,87 +49,90 @@ const DetailsBanner = ({ code, data, loading, videos, credits, id }) => {
     if(release_date_loading === false && loading === false){
         for(let i=0; i<release_date?.results?.length; i++){
             release_date?.results?.[i]?.release_dates?.sort((a, b)=> !a.release_date - !b.release_date || a.release_date.localeCompare(b.release_date));
-            release_date?.results?.[i]?.release_dates?.sort((a, b)=> !a.certification - !b.certification || a.certification.localeCompare(b.certification));
         }
         for(let i=0; i<release_date?.results?.length; i++){
-            if(release_date?.results?.[i]?.iso_3166_1 === code){
+            if(release_date?.results?.[i]?.iso_3166_1 === "IN"){
                 for(let k=0; k<release_date?.results?.[i]?.release_dates?.length; k++){
-                    if(release_date?.results?.[i]?.release_dates[k]?.type === 3 ){
+                    releaseDateFound = 1;
+                    NAForIndia = 1;
+                    releaseDate = release_date?.results?.[i]?.release_dates[k]?.release_date;
+                    break;
+                }
+            }
+        }
+        if(releaseDateFound === 0 && NAForIndia === 0){
+            for(let i=0; i<release_date?.results?.length; i++){
+                if(release_date?.results?.[i]?.iso_3166_1 === "US"){
+                    for(let k=0; k<release_date?.results?.[i]?.release_dates?.length; k++){
+                        code="US";
                         releaseDateFound = 1;
+                        NAForUSA = 1;
                         releaseDate = release_date?.results?.[i]?.release_dates[k]?.release_date;
                         break;
                     }
                 }
             }
-        }if(!releaseDateFound){
-            for(let i=0; i<release_date?.results?.length; i++){
-                if(release_date?.results?.[i]?.iso_3166_1 === "US"){
-                    for(let k=0; k<release_date?.results?.[i]?.release_dates?.length; k++){
-                        if(release_date?.results?.[i]?.release_dates[k]?.type === 3 ){
-                            code="US";
-                            releaseDateFound = 1;
-                            releaseDate = release_date?.results?.[i]?.release_dates[k]?.release_date;
-                            break;
-                        }
-                    }
-                }
-            }
-        }if(!releaseDateFound){
+        }if(releaseDateFound === 0 && NAForIndia === 0 && NAForUSA === 0){
             for(let i=0; i<release_date?.results?.length; i++){
                 if(release_date?.results?.[i]?.iso_3166_1 === "JP"){
                     for(let k=0; k<release_date?.results?.[i]?.release_dates?.length; k++){
-                        if(release_date?.results?.[i]?.release_dates[k]?.type === 3 ){
-                            code="JP";  
-                            releaseDateFound = 1;
-                            releaseDate = release_date?.results?.[i]?.release_dates[k]?.release_date;
-                            break;
-                        }
+                        code="JP";  
+                        releaseDateFound = 1;
+                        NAForJapan = 1;
+                        releaseDate = release_date?.results?.[i]?.release_dates[k]?.release_date;
+                        break;
                     }
                 }
             }
-        }if(!releaseDateFound){
+        }if(releaseDateFound === 0 && NAForIndia === 0 && NAForUSA === 0 && NAForJapan === 0){
             for(let k=0; k<release_date?.results?.[0]?.release_dates?.length; k++){
-                if(release_date?.results?.[0]?.release_dates[k]?.type === 3 ){
-                    code = release_date?.results?.[0]?.iso_3166_1
-                    releaseDate = release_date?.results?.[0]?.release_dates[k]?.release_date;
-                }
+                code = release_date?.results?.[0]?.iso_3166_1;
+                releaseDate = release_date?.results?.[0]?.release_dates[k]?.release_date;
             }
         }
-        
+        console.log(release_date?.results)
         for(let i=0; i<release_date?.results?.length; i++){
-            if(release_date?.results?.[i]?.iso_3166_1 === code){
+            if(release_date?.results?.[i]?.iso_3166_1 === "IN"){
                 if(release_date?.results?.[i]?.release_dates[0]?.certification){
                     certificationFound = 1;
+                    NAForIndia1 = 1;
                     certification = release_date?.results?.[i]?.release_dates[0]?.certification;
                     break;
                 }
             }
-        }if(!certificationFound){
+        }if(certificationFound === 0 && NAForIndia1 === 0){
             for(let i=0; i<release_date?.results?.length; i++){
                 if(release_date?.results?.[i]?.iso_3166_1 === "US"){
                     if(release_date?.results?.[i]?.release_dates[0]?.certification){
                         certificationFound = 1;
+                        NAForUSA1 = 1;
+                        console.log("yes")
                         certification = release_date?.results?.[i]?.release_dates[0]?.certification;
                         break;
                     }
                 }
             }
-        }if(!certificationFound){
+        }if(certificationFound === 0 && NAForIndia1 === 0 && NAForUSA1 === 0){
             for(let i=0; i<release_date?.results?.length; i++){
                 if(release_date?.results?.[i]?.iso_3166_1 === "JP"){
                     if(release_date?.results?.[i]?.release_dates[0]?.certification){
                         certificationFound = 1;
+                        NAForJapan1 = 1;
                         certification = release_date?.results?.[i]?.release_dates[0]?.certification;
                         break;
                     }
                 }
             }
-        }if(!certificationFound){
-            if(release_date?.results?.[0]?.release_dates[0]?.certification){
-                certification = release_date?.results?.[0]?.release_dates[0]?.certification;
+        }if(certificationFound === 0 && NAForIndia1 === 0 && NAForUSA1 === 0 && NAForJapan1 === 0){
+            for(let i=0; i<release_date?.results?.length; i++){
+                if(release_date?.results?.[i]?.release_dates[0]?.certification){
+                    certification = release_date?.results?.[i]?.release_dates[0]?.certification;
+                    console.log(release_date?.results?.[i]?.release_dates[0]?.certification);
+                }
             }
         }
     }
+    console.log(certification)
 
     for(let i=0; i<videos?.results?.length; i++){
         if(videos?.results?.[i]?.name?.toLowerCase().search("official trailer") !== -1){
@@ -183,7 +188,7 @@ const DetailsBanner = ({ code, data, loading, videos, credits, id }) => {
                                 <div className="content">
                                     <div className="left">
                                         <Img
-                                            className="posterImg"
+                                            className={`posterImg ${(data?.status === "Released" && dayjs(releaseDate).format("YYYY-MM-DD") < dayjs().format("YYYY-MM-DD")) ? 'round' : null }`}
                                             src={
                                                 data?.poster_path ?
                                                 url + data?.poster_path
@@ -192,10 +197,21 @@ const DetailsBanner = ({ code, data, loading, videos, credits, id }) => {
                                             }
                                             alt=''
                                         />
+                                        {
+                                            ( data?.status === "Released" && dayjs(releaseDate).format("YYYY-MM-DD") < dayjs().format("YYYY-MM-DD") ) &&
+                                            <div className='play_movie'
+                                                onClick={() => {
+                                                    let movieName = name?.split(': ').join('-').split(' ').join('-').split('--').join('').split(':').join('-').split('.-').join('-');
+                                                    navigate(`/${id}/${movieName}/streaming-online`)
+                                                }}
+                                            >
+                                                Watch Online
+                                            </div>
+                                        }
                                     </div>
                                     <div className="right">
                                         <div className="title">
-                                            { data?.title ? `${data?.title} ` : `${title} `}
+                                            { data?.title ? `${data?.title} ` : `${name} `}
                                             {data?.release_date ? `(${dayjs(data?.release_date).format("YYYY")})` : null}
                                         </div>
                                         <div className="subtitle">

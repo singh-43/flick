@@ -35,12 +35,12 @@
     display: none;
   }
   
-  @-moz-document url-prefix() {
-    html,
-    body {
-      scrollbar-width: none;
-    }
-  }
+  // @-moz-document url-prefix() {
+  //   html,
+  //   body {
+  //     scrollbar-width: none;
+  //   }
+  // }
   
   .skeleton {
     position: relative;

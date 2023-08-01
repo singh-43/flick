@@ -59,9 +59,9 @@ const Cast = ({ data, loading }) => {
                     <div className="listItems"
                         onDragStart={handleDragStart}
                     >
-                        {data?.map((item) => {
+                        {data?.map((item,index) => {
                             return (
-                                <div key={item.id} className="listItem">
+                                <div key={index} className="listItem">
                                     <div className="profileImg">
                                         <Img
                                             src={  

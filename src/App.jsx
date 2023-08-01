@@ -11,6 +11,8 @@ import SeasonData from "./pages/CollectionDetail/SeriesCollectionDetail/SeasonDa
 import SeasonsData from './pages/CollectionDetail/SeriesCollectionDetail/SeasonsData/SeasonsData';
 import { AppContext } from './components/context/Context';
 // import PageNotFound from "./pages/404/PageNotFound";
+import StreamMovie from "./pages/StreamOnline/Movie/Movie";
+import StreamSeries from "./pages/StreamOnline/Series/Series";
 
 function App() {
 
@@ -19,16 +21,18 @@ function App() {
           <AppContext>
             <BrowserRouter>
               <Header />
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/search/:query/*" element={<Find />}></Route>
-                  <Route path="/:mediaType/:id/:title/*" element={<ContentDetails />}></Route>
-                  <Route path="/discover/:mediaType/*" element={<Explore />}></Route>
-                  <Route path="/collection/:id/*" element={<MoviesListData />}></Route>
-                  <Route path="/tv/:id/:title/seasons/*" element={<SeasonsData />}></Route>
-                  <Route path="/tv/:id/:title/season/:season_number/*" element={<SeasonData />}></Route>
-                  <Route path="*" element={<h1>Error Page</h1>}></Route>
-                </Routes>
+                  <Routes>
+                    <Route path="/*" element={<Home />} />
+                    <Route path="/search/:query/*" element={<Find />}></Route>
+                    <Route path="/:id/:movieName/streaming-online/*" element={<StreamMovie />}></Route>
+                    <Route path="/series/:id/:seriesName/streaming-online/*" element={<StreamSeries />}></Route>
+                    <Route path="/:mediaType/:id/:name/*" element={<ContentDetails />}></Route>
+                    <Route path="/discover/:mediaType/*" element={<Explore />}></Route>
+                    <Route path="/collection/:id/*" element={<MoviesListData />}></Route>
+                    <Route path="/tv/:id/:title/seasons/*" element={<SeasonsData />}></Route>
+                    <Route path="/tv/:id/:title/season/:season_number/*" element={<SeasonData />}></Route>
+                    <Route path="*" element={<h1>Error Page</h1>}></Route>
+                  </Routes>
               <Footer />
             </BrowserRouter>
           </AppContext>
