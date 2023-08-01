@@ -66,7 +66,7 @@ const Movie = () => {
                     </div>
                     <div className='player'>
                         <div className='alert'>⚠️ If server 1 doesn't work please use server 2, server 3 or server 4. If he player is showing ads use an adblocker. Thanks for understanding.</div>
-                        <iframe src={serverSource} width="100%" height="650" frameBorder="0" scrolling='no' allowFullScreen={true} ></iframe>
+                        <iframe src={serverSource} width="100%" height="100%" frameBorder="0" scrolling='no' allowFullScreen={true} ></iframe>
                     </div>
                     {
                         data?.belongs_to_collection !== null &&
