@@ -18,9 +18,21 @@ const Series = () => {
     const season_number = useRef(1)
     const episode_number = useRef(1)
     const episodeName = useRef('')
+    let season_list = [],season_list1 = [];
+    const serverList = [1,2,3,4]
+    const [container, setContainer] = useState([])
+    const [serverSource, setServerSource] = useState(`https://multiembed.mov/?video_id=${id}&tmdb=1&s=${season_number.current}&e=${episode_number.current}`);
 
-    let imdb_id = "";
-    let season_list = [],season_list1 = [];;
+    const playServer = (server_number) => {
+        if(server_number.current === 1)
+            setServerSource(`https://multiembed.mov/?video_id=${id}&tmdb=1&s=${season_number.current}&e=${episode_number.current}`)
+        if(server_number.current === 2)
+            setServerSource(`https://www.2embed.cc/embedtv/${id}&s=${season_number.current}&e=${episode_number.current}`)
+        if(server_number.current === 3)
+            setServerSource(`https://vidsrc.me/embed/tv?tmdb=${id}&season=${season_number.current}&episode=${episode_number.current}`)
+        if(server_number.current === 4)
+            setServerSource(`https://remotestre.am/e/?tmdb=${id}&s=${season_number.current}&e=${episode_number.current}`)
+    }
 
     const { data: seasonList, loading: seasonList_loading } = useFetch(`/tv/${id}`);
     if(seasonList?.seasons?.length > 1){
@@ -51,7 +63,6 @@ const Series = () => {
     }
     season_list1?.episodes?.sort((a, b)=> b?.season_number - a?.season_number);
 
-    const [container, setContainer] = useState([])
     const fetchInitialData = () => {
         for(let i=1; i<season_list1?.length; i++){
             fetchDataFromApi(`/tv/${id}/season/${season_list1[i]?.season_number}`).then((res) => {
@@ -86,13 +97,8 @@ const Series = () => {
     }
     episode_list?.sort((a, b)=> b?.episode_number - a?.episode_number);
 
-    const { data: external_ids, loading: external_ids_loading } = useFetch(`/tv/${id}/external_ids`);
-    if(external_ids_loading === false){
-        imdb_id = external_ids?.imdb_id;
-    }
-
     seriesName = seriesName?.split('-').join(' ');
-    const [serverSource, setServerSource] = useState(`https://multiembed.mov/?video_id=${id}&tmdb=1&s=${season_number.current}&e=${episode_number.current}`)
+
 
     return (
         <div className='streamingSeries'>
@@ -121,7 +127,7 @@ const Series = () => {
                         <div>Season {season_number.current < 10 ? `0${season_number.current}` : season_number.current}</div>
                         <div>{` / `}</div>
                         <div>Episode {episode_number.current < 10 ? `0${episode_number.current}` : episode_number.current}</div>
-                        <div>{` / `}</div>
+                        <div>{` - `}</div>
                         <div>{episodeName.current === '' ? episode_list[episode_list?.length - 1]?.name : episodeName.current}</div>
                     </div>
                     <div className='player'>
@@ -134,10 +140,9 @@ const Series = () => {
                             <div className={`seasonSelectItem ${ (season_number.current === item?.season_number) ? `makeBlue` : null} `} key={index}
                                 onClick={() => {
                                     season_number.current = item?.season_number;
-                                    server_number.current = 1;
                                     episode_number.current = first[ season_number.current - 1]?.episode_number;
-                                    setServerSource(`https://multiembed.mov/?video_id=${id}&tmdb=1&s=${season_number.current}&e=${episode_number.current}`)
-                                }}
+                                    playServer(server_number);
+                                }}  
                             >
                                 Season {item?.season_number < 10 ? `0${item?.season_number}` : item?.season_number} 
                             </div>
@@ -146,81 +151,31 @@ const Series = () => {
                     </div>
                     <div className='servers'>
                         <div className='server'>
-                            <div className='serverNumber'>
-                                <img className='serverPic' src={serverPic} alt='' />
-                                <span className='serverName'>Server 1</span>
-                            </div>
+                            {
+                                serverList?.map((item, index) => (
+                                    <div className='serverNumber' key={index}>
+                                        <img className='serverPic' src={serverPic} alt='' />
+                                        <span className={`serverName serverSelect ${(server_number.current === index + 1) ? `makeBlue` : null}`}
+                                            onClick={() => {
+                                                server_number.current = index + 1;
+                                                playServer(server_number);
+                                            }}
+                                        >Server {index+1}</span>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                        <div className='episodeList'>
                             <div className='episodeSelect'>
                             {
                                  episode_list?.map((item,index) => (
-                                    <div className={`episodeSelectItem ${((server_number.current === 1) && (episode_number.current === item?.episode_number)) ? `makeBlue` : null} `} key={index}
+                                    <div className={`episodeSelectItem ${episode_number.current === item?.episode_number ? `makeBlue` : null} `} key={index}
                                         onClick={() => {
-                                            episodeName.current = item?.name;
-                                            episode_number.current = item?.episode_number;
-                                            server_number.current = 1;
-                                            setServerSource(`https://multiembed.mov/?video_id=${id}&tmdb=1&s=${season_number.current}&e=${item?.episode_number}`)
+                                                episodeName.current = item?.name;
+                                                episode_number.current = item?.episode_number;
+                                                playServer(server_number);
                                         }}
                                     >Episode {item?.episode_number < 10 ? `0${item?.episode_number}` : item?.episode_number}</div>
-                                ))
-                            }
-                            </div>
-                        </div>
-                        <div className='server'>
-                            <div className='serverNumber'>
-                                <img className='serverPic' src={serverPic} alt='' />
-                                <span className='serverName'>Server 2</span>
-                            </div>
-                            <div className='episodeSelect'>
-                            {
-                                episode_list?.map((item,index) => (
-                                    <div className={`episodeSelectItem ${((server_number.current === 2) && (episode_number.current === item?.episode_number)) ? `makeBlue` : null} `} key={index}
-                                        onClick={() => {
-                                            episodeName.current = item?.name;
-                                            episode_number.current = item?.episode_number;
-                                            server_number.current = 2;
-                                            setServerSource(`https://www.2embed.cc/embedtv/${imdb_id}&s=${season_number.current}&e=${episode_number.current}`)
-                                        }}
-                                    >Episode {item?.episode_number}</div>
-                                ))
-                            }
-                            </div>
-                        </div>
-                        <div className='server'>
-                            <div className='serverNumber'>
-                                <img className='serverPic' src={serverPic} alt='' />
-                                <span className='serverName'>Server 3</span>
-                            </div>
-                            <div className='episodeSelect'>
-                            {
-                                episode_list?.map((item,index) => (
-                                    <div className={`episodeSelectItem ${((server_number.current === 3) && (episode_number.current === item?.episode_number)) ? `makeBlue` : null} `} key={index}
-                                        onClick={() => {
-                                            episodeName.current = item?.name;
-                                            episode_number.current = item?.episode_number;
-                                            server_number.current = 3;
-                                            setServerSource(`https://vidsrc.me/embed/tv?tmdb=${id}&season=${season_number.current}&episode=${episode_number.current}`)
-                                        }}
-                                    >Episode {item?.episode_number}</div>
-                                ))
-                            }
-                            </div>
-                        </div>
-                        <div className='server'>
-                            <div className='serverNumber'>
-                                <img className='serverPic' src={serverPic} alt='' />
-                                <span className='serverName'>Server 4</span>
-                            </div>
-                            <div className='episodeSelect'>
-                            {
-                                 episode_list?.map((item,index) => (
-                                    <div className={`episodeSelectItem ${((server_number.current === 4) && (episode_number.current === item?.episode_number)) ? `makeBlue` : null} `} key={index}
-                                        onClick={() => {
-                                            episodeName.current = item?.name;
-                                            episode_number.current = item?.episode_number;
-                                            server_number.current = 4;
-                                            setServerSource(`https://remotestre.am/e/?tmdb=${id}&s=${season_number.current}&e=${episode_number.current}`)
-                                        }}
-                                    >Episode {item?.episode_number}</div>
                                 ))
                             }
                             </div>

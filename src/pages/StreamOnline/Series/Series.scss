@@ -60,21 +60,41 @@
         margin-bottom: 20px;
         .server {
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+            justify-content: space-around;
+            align-items: center;
             padding: 15px;
             background-color: #20232c;
+            .serverSelect {
+                background-color: #777777;
+                padding: 6px;
+                font-size: 14px;
+                border-radius: 5px;
+                &:hover {
+                    cursor: pointer;
+                    background-color: #00acc1;
+                }
+                &.makeBlue {
+                    background-color: #00acc1;
+                }
+            }
             .serverNumber {
                 flex-shrink: 0;
                 display: flex;
-                gap: 5px;
+                gap: 10px;
+                margin-right: 30px;
                 .serverPic {
                     align-self: center;
                     height: 10px;
                     width: 15px;
                 }
-                margin-bottom: 10px;
             }
+        }
+        .episodeList {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 15px;
+            background-color: #20232c;
             .episodeSelect {
                 display: flex;
                 align-items: center;

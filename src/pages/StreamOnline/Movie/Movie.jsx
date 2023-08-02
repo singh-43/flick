@@ -8,23 +8,24 @@ import Recommendations from "../../ContentDetails/ContentSuggestion/Recommendati
 import useFetch from '../../../hooks/useFetch';
 import { fetchDataFromApi } from '../../../utils/api';
 import dayjs from 'dayjs';
-import ReactPlayer from 'react-player'
 
 const Movie = () => {
 
-    const navigate = useNavigate();
     let { id, movieName } = useParams();
-    const [container, setContainer] = useState([])
-
-    
+    const navigate = useNavigate();
+    movieName = movieName?.split('-').join(' ');
+    let server_number = useRef(1);
+    const [serverSource, setServerSource] = useState(`https://multiembed.mov/?video_id=${id}&tmdb=1`)
     let currentPart = useRef();
-    const { data, loading } = useFetch(`/movie/${id}`);
     let collection_id;
+    let collection = [];
+    const serverList = [`https://multiembed.mov/?video_id=${id}&tmdb=1`, `https://www.2embed.cc/embed/${id}`, `https://vidsrc.me/embed/movie?tmdb=${id}`, `https://remotestre.am/e/?tmdb=${id}`];
+
+    const { data, loading } = useFetch(`/movie/${id}`);
     if(data?.belongs_to_collection !== null){
         collection_id = data?.belongs_to_collection?.id
     }
     const { data: collectionData, loading: collectionData_loading } = useFetch(`/collection/${collection_id}`);
-    let collection = [];
 
     for(let i=0; i<collectionData?.parts?.length; i++){
         if(dayjs(collectionData?.parts[i]?.release_date).format("YYYY-MM-DD") < dayjs().format("YYYY-MM-DD")){
@@ -38,9 +39,6 @@ const Movie = () => {
             break
         }
     }
-    let server_number = useRef(1);
-    movieName = movieName?.split('-').join(' ');
-    const [serverSource, setServerSource] = useState(`https://multiembed.mov/?video_id=${id}&tmdb=1`)
 
     return (
         <div className='streamingMovie'>
@@ -68,10 +66,10 @@ const Movie = () => {
                     </div>
                     <div className='player'>
                         <div className='alert'>⚠️ If server 1 doesn't work please use server 2, server 3 or server 4. If the player is showing ads use an adblocker. Thanks for understanding.</div>
-                        <iframe src={serverSource} width="100%" height="100%" frameBorder="0" scrolling={'yes'} allowFullScreen={true} ></iframe>
+                        <iframe src={serverSource} width="100%" height="100%" frameBorder="0" scrolling={'yes'} allowFullScreen={true}></iframe>
                     </div>
                     {
-                        data?.belongs_to_collection !== null &&
+                        data?.belongs_to_collection !== null && collection?.length > 1 &&
                         <div className='collectionStream'>
                             <div className='collectionHeading'
                                 onClick={() => {
@@ -98,56 +96,19 @@ const Movie = () => {
                     }
                     <div className='servers'>
                         <div className='server'>
-                            <div className='serverNumber'>
-                                <img className='serverPic' src={serverPic} alt='' />
-                                <span className='serverName'>Server 1</span>
-                            </div>
-                            <div className={`serverSelect ${(server_number.current === 1) ? `makeBlue` : null}`}
-                                onClick={() => {
-                                    server_number.current = 1;
-                                    setServerSource(`https://multiembed.mov/?video_id=${id}&tmdb=1`)
-                                }}
-                            >{(server_number.current === 1)? `▶️` : null}Play
-                            </div>
-                        </div>
-                        <div className='server'>
-                            <div className='serverNumber'>
-                                <img className='serverPic' src={serverPic} alt='' />
-                                <span className='serverName'>Server 2</span>
-                            </div>
-                            <div className={`serverSelect ${ server_number.current === 2 ? `makeBlue` : null}`}
-                                onClick={() => {
-                                    server_number.current = 2;
-                                    setServerSource(`https://www.2embed.cc/embed/${id}`)
-                                }}
-                            >{(server_number.current === 2)? `▶️` : null}Play
-                            </div>
-                        </div>
-                        <div className='server'>
-                            <div className='serverNumber'>
-                                <img className='serverPic' src={serverPic} alt='' />
-                                <span className='serverName'>Server 3</span>
-                            </div>
-                            <div className={`serverSelect ${ server_number.current === 3 ? `makeBlue` : null}`}
-                                onClick={() => {
-                                    server_number.current = 3;
-                                    setServerSource(`https://vidsrc.me/embed/movie?tmdb=${id}`)
-                                }}
-                            >{(server_number.current === 3)? `▶️` : null}Play
-                            </div>
-                        </div>
-                        <div className='server'>
-                            <div className='serverNumber'>
-                                <img className='serverPic' src={serverPic} alt='' />
-                                <span className='serverName'>Server 4</span>
-                            </div>
-                            <div className={`serverSelect ${ server_number.current === 4 ? `makeBlue` : null}`}
-                                onClick={() => {
-                                    server_number.current = 4;
-                                    setServerSource(`https://remotestre.am/e/?tmdb=${id}`)
-                                }}
-                            >{(server_number.current === 4)? `▶️` : null}Play
-                            </div>
+                            {
+                                serverList?.map((item, index) => (
+                                    <div className='serverNumber' key={index}>
+                                        <img className='serverPic' src={serverPic} alt='' />
+                                        <span className={`serverName serverSelect ${(server_number.current === index + 1) ? `makeBlue` : null}`}
+                                            onClick={() => {
+                                                server_number.current = index + 1;
+                                                setServerSource(serverList[index])
+                                            }}
+                                        >Server {index+1}</span>
+                                    </div>
+                                ))
+                            }
                         </div>
                     </div>
                 </ContentWrapper>
