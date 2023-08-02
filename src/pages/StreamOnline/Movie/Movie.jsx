@@ -26,20 +26,18 @@ const Movie = () => {
     const { data: collectionData, loading: collectionData_loading } = useFetch(`/collection/${collection_id}`);
     let collection = [];
 
-    useEffect(() => {
-        for(let i=0; i<collectionData?.parts?.length; i++){
-            if(dayjs(collectionData?.parts[i]?.release_date).format("YYYY-MM-DD") < dayjs().format("YYYY-MM-DD")){
-                collection.push(collectionData?.parts[i])
-            }
+    for(let i=0; i<collectionData?.parts?.length; i++){
+        if(dayjs(collectionData?.parts[i]?.release_date).format("YYYY-MM-DD") < dayjs().format("YYYY-MM-DD")){
+            collection.push(collectionData?.parts[i])
         }
-        collection?.sort((a, b)=> !a?.release_date - !b?.release_date  || a.release_date.localeCompare(b.release_date));
-        for(let i=0; i<collection?.length; i++){
-            if(collection[i]?.id === data?.id){
-                currentPart.current = i;
-                break
-            }
+    }
+    collection?.sort((a, b)=> !a?.release_date - !b?.release_date  || a.release_date.localeCompare(b.release_date));
+    for(let i=0; i<collection?.length; i++){
+        if(collection[i]?.id === data?.id){
+            currentPart.current = i;
+            break
         }
-    },[collectionData])
+    }
     let server_number = useRef(1);
     movieName = movieName?.split('-').join(' ');
     const [serverSource, setServerSource] = useState(`https://multiembed.mov/?video_id=${id}&tmdb=1`)
