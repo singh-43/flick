@@ -175,7 +175,7 @@ const Series = () => {
                                                 episode_number.current = item?.episode_number;
                                                 playServer(server_number);
                                         }}
-                                    >Episode {item?.episode_number < 10 ? `0${item?.episode_number}` : item?.episode_number}</div>
+                                    >EP {item?.episode_number < 10 ? `0${item?.episode_number}` : item?.episode_number}</div>
                                 ))
                             }
                             </div>
