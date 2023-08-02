@@ -108,7 +108,7 @@ const OfficialVideos = ({ data, loading }) => {
         <div className="SeriesOfficialVideos">
             <ContentWrapper>
                 {
-                    loading === true ?
+                    loading === false ?
                     (
                         video?.length > 0 &&
                         (
@@ -146,7 +146,6 @@ const OfficialVideos = ({ data, loading }) => {
                     :
                     (
                         <div className="videoSkeleton">
-                            <div className='row skeleton'></div>
                             {loadingSkeleton()}
                             {loadingSkeleton()}
                             {loadingSkeleton()}

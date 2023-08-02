@@ -54,7 +54,7 @@ const Cast = ({ data, loading }) => {
     return (
         <div className="castSection">
             <ContentWrapper>
-                {loading ? (
+                {!loading ? (
                     <>
                         <div className="sectionHeading">Top Cast</div>
                         <div className="listItems"
@@ -83,21 +83,14 @@ const Cast = ({ data, loading }) => {
                         </div>
                     </>
                 ) : (
-                    <>
-                        {/* <div className="castSection"> */}
-                            <div className="sectionHeading">
-                                <div className="row skeleton"></div>
-                            </div>
-                        {/* </div> */}
-                        <div className="castSkeleton">
-                            {skeleton()}
-                            {skeleton()}
-                            {skeleton()}
-                            {skeleton()}
-                            {skeleton()}
-                            {skeleton()}
-                        </div>
-                    </>
+                    <div className="castSkeleton">
+                        {skeleton()}
+                        {skeleton()}
+                        {skeleton()}
+                        {skeleton()}
+                        {skeleton()}
+                        {skeleton()}
+                    </div>
                 )}
             </ContentWrapper>
         </div>
