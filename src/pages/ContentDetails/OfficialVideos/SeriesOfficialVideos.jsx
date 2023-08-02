@@ -14,18 +14,19 @@ const OfficialVideos = ({ data, loading }) => {
     const handleDragStart = (e) => e.preventDefault();
 
     let video = [];
+    const { id } = useParams();
+    const [container, setContainer] = useState([]);
+
     for(let i=0; i<data?.results?.length; i++){
         if( data?.results?.[i]?.official === true ){
             video.push(data?.results?.[i]);
         }
     }
 
-    const { id } = useParams();
     //eslint-disable-next-line
-    const { data: series, loading: seriesLoading } = useFetch(`/tv/${id}`);
+    const { data: series } = useFetch(`/tv/${id}`);
     series?.seasons?.sort((a, b)=> a?.season_number - b?.season_number  || a.season_number.localeCompare(b.season_number));
 
-    const [container, setContainer] = useState([]);
 
     const fetchInitialData = () => {
         for(let i=0; i<series?.seasons?.length; i++){
@@ -37,6 +38,7 @@ const OfficialVideos = ({ data, loading }) => {
 
     if(container?.length > 0){
         for(let i=0; i<container?.length; i++){
+            // console.log(container[i]);
             for(let k=0 ; k<container?.[i]?.length; k++){
                 if( container?.[i]?.[k]?.official === true ){
                     video.push(container?.[i]?.[k]);
@@ -53,11 +55,11 @@ const OfficialVideos = ({ data, loading }) => {
     video?.sort((a, b)=> !b.published_at - !a.published_at || b.published_at.localeCompare(a.published_at));
 
     useEffect(() => {
-        //eslint-disable-next-line
+        // eslint-disable-next-line
         setContainer([]);
         fetchInitialData();
-        //eslint-disable-next-line
-    },[data])
+        // eslint-disable-next-line
+    },[series])
 
     const loadingSkeleton = () => {
         return (
@@ -103,10 +105,10 @@ const OfficialVideos = ({ data, loading }) => {
     },[loading === false])
 
     return (
-        <div className="videosSection">
+        <div className="SeriesOfficialVideos">
             <ContentWrapper>
                 {
-                    loading === false ?
+                    loading === true ?
                     (
                         video?.length > 0 &&
                         (
@@ -144,6 +146,7 @@ const OfficialVideos = ({ data, loading }) => {
                     :
                     (
                         <div className="videoSkeleton">
+                            <div className='row skeleton'></div>
                             {loadingSkeleton()}
                             {loadingSkeleton()}
                             {loadingSkeleton()}

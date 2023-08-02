@@ -8,6 +8,7 @@ import Recommendations from "../../ContentDetails/ContentSuggestion/Recommendati
 import useFetch from '../../../hooks/useFetch';
 import { fetchDataFromApi } from '../../../utils/api';
 import dayjs from 'dayjs';
+import ReactPlayer from 'react-player'
 
 const Movie = () => {
 
@@ -65,19 +66,25 @@ const Movie = () => {
                         >{data?.title}</div>
                     </div>
                     <div className='player'>
-                        <div className='alert'>⚠️ If server 1 doesn't work please use server 2, server 3 or server 4. If he player is showing ads use an adblocker. Thanks for understanding.</div>
-                        <iframe src={serverSource} width="100%" height="650" frameBorder="0" scrolling='no' allowFullScreen={true} ></iframe>
+                        <div className='alert'>⚠️ If server 1 doesn't work please use server 2, server 3 or server 4. If the player is showing ads use an adblocker. Thanks for understanding.</div>
+                        <iframe src={serverSource} width="100%" height="100%" frameBorder="0" scrolling={'yes'} allowFullScreen={true} ></iframe>
                     </div>
                     {
                         data?.belongs_to_collection !== null &&
                         <div className='collectionStream'>
-                            <div>Part of the {data?.belongs_to_collection?.name}</div>
+                            <div className='collectionHeading'
+                                onClick={() => {
+                                    let name = data?.belongs_to_collection?.name?.split(': ').join('-').split(' ').join('-').split('--').join('').split(':').join('-').split('.-').join('-');
+                                    navigate(`/collection/${collection_id}/${name}`);
+                                }}
+                            >Part of the {data?.belongs_to_collection?.name}</div>
                             <div className='collectionStreamItem'>
                             {
                                 collection?.map((item,index) => (
                                     <div className={`collectionStreamItems ${ currentPart.current === index ? 'makeBlue' : null }`} key={index}
                                         onClick={() => {  
                                             currentPart.current = index;
+                                            server_number.current = 1;
                                             movieName = item?.title?.split(': ').join('-').split(' ').join('-').split('--').join('').split(':').join('-').split('.-').join('-');
                                             navigate(`/${item?.id}/${movieName}/streaming-online`);
                                             setServerSource(`https://multiembed.mov/?video_id=${item?.id}&tmdb=1`)

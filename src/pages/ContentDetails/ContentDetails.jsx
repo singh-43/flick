@@ -8,8 +8,6 @@ import MoviesOfficialVideos from "./OfficialVideos/MoviesOfficialVideos";
 import SeriesOfficialVideos from "./OfficialVideos/SeriesOfficialVideos";
 import Recommendations from "./ContentSuggestion/Recommendations";
 import Similar from "./ContentSuggestion/Similar";
-import axios from 'axios';
-import { countries } from '../../utils/constants';
 import SeriesCollection from "./Collection/Tv/Collection";
 import MoviesCollection from "./Collection/Movies/Collection";
 

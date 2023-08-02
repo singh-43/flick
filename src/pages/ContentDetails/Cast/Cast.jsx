@@ -54,41 +54,50 @@ const Cast = ({ data, loading }) => {
     return (
         <div className="castSection">
             <ContentWrapper>
-                <div className="sectionHeading">Top Cast</div>
-                {!loading ? (
-                    <div className="listItems"
-                        onDragStart={handleDragStart}
-                    >
-                        {data?.map((item,index) => {
-                            return (
-                                <div key={index} className="listItem">
-                                    <div className="profileImg">
-                                        <Img
-                                            src={  
-                                                item?.profile_path ? 
-                                                    url + item?.profile_path
-                                                    :
-                                                    NoAvatarImg 
-                                            }
-                                        />
+                {loading ? (
+                    <>
+                        <div className="sectionHeading">Top Cast</div>
+                        <div className="listItems"
+                            onDragStart={handleDragStart}
+                        >
+                            {data?.map((item,index) => {
+                                return (
+                                    <div key={index} className="listItem">
+                                        <div className="profileImg">
+                                            <Img
+                                                src={  
+                                                    item?.profile_path ? 
+                                                        url + item?.profile_path
+                                                        :
+                                                        NoAvatarImg 
+                                                }
+                                            />
+                                        </div>
+                                        <div className="name">{item.name}</div>
+                                        <div className="character">
+                                            {item.character}
+                                        </div>
                                     </div>
-                                    <div className="name">{item.name}</div>
-                                    <div className="character">
-                                        {item.character}
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
+                                );
+                            })}
+                        </div>
+                    </>
                 ) : (
-                    <div className="castSkeleton">
-                        {skeleton()}
-                        {skeleton()}
-                        {skeleton()}
-                        {skeleton()}
-                        {skeleton()}
-                        {skeleton()}
-                    </div>
+                    <>
+                        {/* <div className="castSection"> */}
+                            <div className="sectionHeading">
+                                <div className="row skeleton"></div>
+                            </div>
+                        {/* </div> */}
+                        <div className="castSkeleton">
+                            {skeleton()}
+                            {skeleton()}
+                            {skeleton()}
+                            {skeleton()}
+                            {skeleton()}
+                            {skeleton()}
+                        </div>
+                    </>
                 )}
             </ContentWrapper>
         </div>

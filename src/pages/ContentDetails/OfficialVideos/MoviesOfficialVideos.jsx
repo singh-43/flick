@@ -67,7 +67,7 @@ const OfficialVideos = ({ data, loading }) => {
     },[data])
 
     return (
-        <div className="videosSection">
+        <div className="MoviesOfficialVideos">
             <ContentWrapper>
                 {
                     loading === false ?

@@ -17,7 +17,6 @@ const DetailsBanner = ({ data, loading, videos, credits, id }) => {
     useEffect(() => {
         window.scrollTo(0,0);
     },[])
-    // console.log(data)
 
     let { name } = useParams();
     name = name?.split('-').join(' ')
@@ -46,7 +45,6 @@ const DetailsBanner = ({ data, loading, videos, credits, id }) => {
     let video = '', trailerFound = 0, certificationFound = 0, NAForIndia = 0, NAForUSA = 0, NAForJapan = 0;
     let certification = "";
     const { data: rating, loading: rating_loading } = useFetch(`/tv/${id}/content_ratings`);
-    console.log(rating?.results)
     
     if(rating_loading === false && loading === false){
         for(let i=0; i<rating?.results?.length; i++){

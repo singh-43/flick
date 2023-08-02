@@ -1,4 +1,4 @@
-.videosSection {
+.MoviesOfficialVideos {
     position: relative;
     margin-bottom: 20px;
     .sectionHeading {
@@ -21,6 +21,7 @@
                 margin-bottom: 15px;
                 position: relative;
                 img {
+                    aspect-ratio: 15/9;
                     width: 100%;
                     display: block;
                     border-radius: 12px;
@@ -110,7 +111,7 @@
 }
 
 @media only screen and (min-width: 700px) {
-    .videosSection {
+    .MoviesOfficialVideos {
         .videos {
             gap: 15px;
             margin: 0;
