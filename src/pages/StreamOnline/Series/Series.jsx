@@ -122,7 +122,7 @@ const Series = () => {
                         <div>{` / `}</div>
                         <div>Episode {episode_number.current < 10 ? `0${episode_number.current}` : episode_number.current}</div>
                         <div>{` / `}</div>
-                        <div>Episode {episodeName.current === '' ? episode_list[episode_list?.length - 1]?.name : episodeName.current}</div>
+                        <div>{episodeName.current === '' ? episode_list[episode_list?.length - 1]?.name : episodeName.current}</div>
                     </div>
                     <div className='player'>
                         <div className='alert'>⚠️ If server 1 doesn't work please use server 2, server 3 or server 4. If the player is showing ads use an adblocker. Thanks for understanding.</div>
