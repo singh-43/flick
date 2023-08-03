@@ -199,6 +199,7 @@ const DetailsBanner = ({ data, loading, videos, credits, id }) => {
                                                 onClick={() => {
                                                     let movieName = name?.split(': ').join('-').split(' ').join('-').split('--').join('').split(':').join('-').split('.-').join('-');
                                                     navigate(`/${id}/${movieName}/streaming-online`)
+                                                    window.location.reload();
                                                 }}
                                             >
                                                 Watch Online

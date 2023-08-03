@@ -19,7 +19,8 @@ const Header = () => {
 
     const searchQueryHandler = (event) => {
         if(event.key === "Enter" && query.length > 0){
-          navigate(`/search/${query}`);
+            navigate(`/search/${query}`);
+            setShowSearch(false)
         }
     }
 
@@ -58,17 +59,25 @@ const Header = () => {
                 <ul className='menuItem'>
                     <li className='menuItems'
                         onClick={() => {
-                            navigate('/discover/movie')
+                            if(location?.pathname !== '/discover/movie'){
+                                navigate('/discover/movie')
+                                setMobile(false);
+                            }
+                            setShowSearch(false);
                         }}
                     >Movies</li>
                     <li className='menuItems'
                         onClick={() => {
-                        navigate('/discover/tv')
+                            if(location?.pathname !== '/discover/tv'){
+                                navigate('/discover/tv')
+                                setMobile(false);
+                            }
+                            setShowSearch(false);
                     }}>Tv Show</li>
                     <li className='menuItems'>
                         <HiOutlineSearch 
                             onClick={() => {
-                                setShowSearch(true)
+                                setShowSearch(true);
                                 setMobile(false);
                             }}
                         />
