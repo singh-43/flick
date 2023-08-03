@@ -59,7 +59,7 @@ const OfficialVideos = ({ data, loading }) => {
             })
         }
         //eslint-disable-next-line
-    },[video?.length > 0])
+    },[video])
 
     useEffect(() => {
         //eslint-disable-next-line
@@ -107,12 +107,17 @@ const OfficialVideos = ({ data, loading }) => {
                     )
                     :
                     (
-                        <div className="videoSkeleton">
-                            {loadingSkeleton()}
-                            {loadingSkeleton()}
-                            {loadingSkeleton()}
-                            {loadingSkeleton()}
-                        </div>
+                        <>
+                            <div className="sectionHeadingSkeleton">
+                                <div className="row skeleton"></div>
+                            </div>
+                            <div className="videoSkeleton">
+                                {loadingSkeleton()}
+                                {loadingSkeleton()}
+                                {loadingSkeleton()}
+                                {loadingSkeleton()}
+                            </div>
+                        </>
                     )
                 }
             </ContentWrapper>

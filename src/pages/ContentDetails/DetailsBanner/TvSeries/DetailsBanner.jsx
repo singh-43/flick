@@ -14,6 +14,9 @@ import { ReadMore } from '../../../../utils/constants';
 
 const DetailsBanner = ({ data, loading, videos, credits, id }) => {
 
+    console.log(videos)
+    videos?.results?.sort((a, b)=> !b.published_at - !a.published_at || b.published_at.localeCompare(a.published_at));
+
     useEffect(() => {
         window.scrollTo(0,0);
     },[])
@@ -87,37 +90,56 @@ const DetailsBanner = ({ data, loading, videos, credits, id }) => {
 
     for(let i=0; i<videos?.results?.length; i++){
         if(videos?.results?.[i]?.name?.toLowerCase().search("official trailer") !== -1){
+            if(videos?.results?.[i]?.name?.toLowerCase().search("removed") !== -1){
+                break
+            }
             trailerFound = 1;
             video = videos?.results?.[i]?.key;
             break;
         }
-    }if(!trailerFound){
+    }
+    if(!trailerFound){
         for(let i=0; i<videos?.results?.length; i++){
             if(videos?.results?.[i]?.name?.toLowerCase().search("trailer") !== -1){
+                if(videos?.results?.[i]?.name?.toLowerCase().search("removed") !== -1){
+                    break
+                }
                 trailerFound = 1;
                 video = videos?.results?.[i]?.key;
                 break;
             }
         }
-    }if(!trailerFound){
+    }
+    if(!trailerFound){
         for(let i=0; i<videos?.results?.length; i++){
             if(videos?.results?.[i]?.name?.toLowerCase().search("teaser trailer") !== -1){
+                if(videos?.results?.[i]?.name?.toLowerCase().search("removed") !== -1){
+                    break
+                }
                 trailerFound = 1;
                 video = videos?.results?.[i]?.key;
                 break;
             }
         }
-    }if(!trailerFound){
+    }
+    if(!trailerFound){
         for(let i=0; i<videos?.results?.length; i++){
             if(videos?.results?.[i]?.name?.toLowerCase().search("official teaser") !== -1){
+                if(videos?.results?.[i]?.name?.toLowerCase().search("removed") !== -1){
+                    break
+                }
                 trailerFound = 1;
                 video = videos?.results?.[i]?.key;
                 break;
             }
         }
-    }if(!trailerFound){
+    }
+    if(!trailerFound){
         for(let i=0; i<videos?.results?.length; i++){
-            if(videos?.results?.[i]?.name?.toLowerCase().search("teaser") !== -1){
+            if(videos?.results?.[i]?.name?.toLowerCase().search("teaser") !== -1 || videos?.results?.[i]?.name?.toLowerCase().search("promo") !== -1 || videos?.results?.[i]?.name?.toLowerCase().search("preview") !== -1){
+                if(videos?.results?.[i]?.name?.toLowerCase().search("removed") !== -1){
+                    break
+                }
                 trailerFound = 1;
                 video = videos?.results?.[i]?.key;
                 break;

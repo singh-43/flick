@@ -5,7 +5,7 @@ import "./Card.scss";
 import Img from "../lazyLoadImage/Img";
 import CircleRating from "../CircleRating/CircleRating";
 import NoPosterImg from "../../assets/images/no-poster.png";
-import { url, isoLangs } from "../../utils/constants";
+import { url, isoLangs, openInNewTab } from "../../utils/constants";
 import Genres from "../genres/Genres";
 
 const MovieCard = ({ data, fromSearch, mediaType }) => {
@@ -23,7 +23,7 @@ const MovieCard = ({ data, fromSearch, mediaType }) => {
             <div className="posterBlock"
                 onClick={() =>{
                     let title = ( data?.title || data?.name )?.split(': ').join('-').split(' ').join('-').split('--').join('').split(':').join('-').split('.-').join('-');
-                    navigate(`/${data.media_type || mediaType}/${data.id}/${title}`)
+                    navigate(openInNewTab(`/${data.media_type || mediaType}/${data.id}/${title}`));
                 }}
             >
                 <Img className="posterImg" 

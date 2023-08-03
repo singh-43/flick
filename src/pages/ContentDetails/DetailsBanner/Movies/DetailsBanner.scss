@@ -200,14 +200,15 @@
         }
     }
 
-    .detailsBannerSkeleton {
+    .moviesdetailsBannerSkeleton {
         display: flex;
         position: relative;
         flex-direction: column;
         gap: 25px;
         .contentWrapper {
             display: flex;
-            gap: 50px;
+            flex-direction: column;
+            gap: 20px;
         }
         .left {
             flex-shrink: 0;
@@ -279,9 +280,13 @@
             }
         }
     
-        .detailsBannerSkeleton {
+        .moviesdetailsBannerSkeleton {
             gap: 50px;
             flex-direction: row;
+            .contentWrapper {
+                flex-direction: row;
+                gap: 50px;
+            }
             .left {
                 max-width: 350px;
             }

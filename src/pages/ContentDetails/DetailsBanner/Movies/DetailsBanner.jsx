@@ -371,7 +371,7 @@ const DetailsBanner = ({ data, loading, videos, credits, id }) => {
                     )}
                 </>
             ) : (
-                <div className="detailsBannerSkeleton">
+                <div className="moviesdetailsBannerSkeleton">
                     <ContentWrapper>
                         <div className="left skeleton"></div>
                         <div className="right">

@@ -29,7 +29,7 @@ const OfficialVideos = ({ data, loading }) => {
 
 
     const fetchInitialData = () => {
-        for(let i=0; i<series?.seasons?.length; i++){
+        for(let i=1; i<series?.seasons?.length; i++){
             fetchDataFromApi(`/tv/${id}/season/${series?.seasons?.[i]?.season_number}/videos`).then((res) => {
                 setContainer((prev) => [...prev, res?.results]);
             });
@@ -101,7 +101,7 @@ const OfficialVideos = ({ data, loading }) => {
             })
         }
         //eslint-disable-next-line
-    },[loading === false])
+    },[container])
 
     return (
         <div className="SeriesOfficialVideos">
@@ -144,12 +144,17 @@ const OfficialVideos = ({ data, loading }) => {
                     )
                     :
                     (
-                        <div className="videoSkeleton">
-                            {loadingSkeleton()}
-                            {loadingSkeleton()}
-                            {loadingSkeleton()}
-                            {loadingSkeleton()}
-                        </div>
+                        <>
+                            <div className="sectionHeadingSkeleton">
+                                <div className="row skeleton"></div>
+                            </div>
+                            <div className="videoSkeleton">
+                                {loadingSkeleton()}
+                                {loadingSkeleton()}
+                                {loadingSkeleton()}
+                                {loadingSkeleton()}
+                            </div>
+                        </>
                     )
                 }
             </ContentWrapper>

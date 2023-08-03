@@ -74,7 +74,7 @@ const Cast = ({ data, loading }) => {
                                             />
                                         </div>
                                         <div className="name">{item.name}</div>
-                                        <div className="character">
+                                        <div className="character ellipsis">
                                             {item.character}
                                         </div>
                                     </div>
@@ -83,14 +83,19 @@ const Cast = ({ data, loading }) => {
                         </div>
                     </>
                 ) : (
-                    <div className="castSkeleton">
-                        {skeleton()}
-                        {skeleton()}
-                        {skeleton()}
-                        {skeleton()}
-                        {skeleton()}
-                        {skeleton()}
-                    </div>
+                    <>
+                        <div className="sectionHeadingSkeleton">
+                            <div className="row skeleton"></div>
+                        </div>
+                        <div className="castSectionSkeleton">
+                            {skeleton()}
+                            {skeleton()}
+                            {skeleton()}
+                            {skeleton()}
+                            {skeleton()}
+                            {skeleton()}
+                        </div>
+                    </>
                 )}
             </ContentWrapper>
         </div>
