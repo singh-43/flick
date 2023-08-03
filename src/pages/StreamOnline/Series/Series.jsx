@@ -141,6 +141,7 @@ const Series = () => {
                         season_list?.map((item, index) => (
                             <div className={`seasonSelectItem ${ (season_number.current === item?.season_number) ? `makeBlue` : null} `} key={index}
                                 onClick={() => {
+                                    episodeName.current = '';
                                     season_number.current = item?.season_number;
                                     episode_number.current = first[ season_number.current - 1]?.episode_number;
                                     playServer(server_number);
