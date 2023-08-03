@@ -36,7 +36,6 @@ const SeasonData = () => {
     const { data, loading } = useFetch(`/tv/${id}/season/${season_number}`);
     const { data: seasonsList } = useFetch(`/tv/${id}`);
     seasonsList?.seasons?.sort((a, b)=> a?.season_number - b?.season_number);
-    console.log(data)
 
     const series_name = title;
 

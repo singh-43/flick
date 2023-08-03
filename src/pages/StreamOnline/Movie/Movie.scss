@@ -46,7 +46,7 @@
             flex-flow: row wrap;
             gap: 10px;
             .collectionStreamItems {
-                padding: 8px;
+                padding: 6px;
                 font-size: 14px;
                 border-radius: 5px;
                 background-color: #777777;
@@ -84,15 +84,15 @@
         }
         .server {
             display: flex;
-            justify-content: space-around;
-            align-items: center;
+            flex-flow: row wrap;
+            gap: 15px;
+            justify-content: space-between;
             padding: 15px;
             background-color: #20232c;
             .serverNumber {
                 flex-shrink: 0;
                 display: flex;
                 gap: 10px;
-                margin-right: 30px;
                 .serverPic {
                     align-self: center;
                     height: 10px;

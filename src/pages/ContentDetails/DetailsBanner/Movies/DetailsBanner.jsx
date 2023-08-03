@@ -90,7 +90,6 @@ const DetailsBanner = ({ data, loading, videos, credits, id }) => {
                 releaseDate = release_date?.results?.[0]?.release_dates[k]?.release_date;
             }
         }
-        console.log(release_date?.results)
         for(let i=0; i<release_date?.results?.length; i++){
             if(release_date?.results?.[i]?.iso_3166_1 === "IN"){
                 if(release_date?.results?.[i]?.release_dates[0]?.certification){
@@ -106,7 +105,6 @@ const DetailsBanner = ({ data, loading, videos, credits, id }) => {
                     if(release_date?.results?.[i]?.release_dates[0]?.certification){
                         certificationFound = 1;
                         NAForUSA1 = 1;
-                        console.log("yes")
                         certification = release_date?.results?.[i]?.release_dates[0]?.certification;
                         break;
                     }
@@ -127,12 +125,10 @@ const DetailsBanner = ({ data, loading, videos, credits, id }) => {
             for(let i=0; i<release_date?.results?.length; i++){
                 if(release_date?.results?.[i]?.release_dates[0]?.certification){
                     certification = release_date?.results?.[i]?.release_dates[0]?.certification;
-                    console.log(release_date?.results?.[i]?.release_dates[0]?.certification);
                 }
             }
         }
     }
-    console.log(certification)
 
     for(let i=0; i<videos?.results?.length; i++){
         if(videos?.results?.[i]?.name?.toLowerCase().search("official trailer") !== -1){

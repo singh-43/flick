@@ -15,6 +15,8 @@ const Series = () => {
     let { id, seriesName} = useParams();
 
     const server_number = useRef(1)
+    let first = [];    
+    let episode_list = [];
     const season_number = useRef(1)
     const episode_number = useRef(1)
     const episodeName = useRef('')
@@ -70,7 +72,7 @@ const Series = () => {
             });
         }    
     };
-    let first = [];
+
     for(let i=0; i<container?.length; i++){
         if(dayjs(container[i]?.air_date).format("YYYY-MM-DD") < dayjs().format("YYYY-MM-DD")){
             first.push(container[i]);
@@ -82,7 +84,7 @@ const Series = () => {
         fetchInitialData();
     },[seasonList_loading === false])
 
-    let episode_list = [];
+
     let { data: episodeList, loading: episodeList_loading } = useFetch(`/tv/${id}/season/${season_number.current}`);
     if(episodeList?.episodes?.[season_list?.length-1]?.season_number !== season_list[season_list?.length-1]?.season_number){
         for(let i=0; i<episodeList?.episodes?.length; i++){    
@@ -168,14 +170,15 @@ const Series = () => {
                         <div className='episodeList'>
                             <div className='episodeSelect'>
                             {
-                                 episode_list?.map((item,index) => (
-                                    <div className={`episodeSelectItem ${episode_number.current === item?.episode_number ? `makeBlue` : null} `} key={index}
+                                 episode_list?.map((item,index) => (//98 90 83
+                                    <div className={` ${episode_list[0]?.episode_number.toString()?.length <= 2 ? `eight_three` : episode_list[0]?.episode_number.toString()?.length === 3 ? `eight_nine` : `nine_eight` } episodeSelectItem ${episode_number.current === item?.episode_number ? `makeBlue` : null} `} key={index}
                                         onClick={() => {
                                                 episodeName.current = item?.name;
                                                 episode_number.current = item?.episode_number;
                                                 playServer(server_number);
+
                                         }}
-                                    >EP {item?.episode_number < 10 ? `0${item?.episode_number}` : item?.episode_number}</div>
+                                    >Episode {item?.episode_number.toString()?.length < episode_list[0]?.episode_number.toString()?.length || episode_list[0]?.episode_number.toString()?.length < 2 ? `0${item?.episode_number}` : item?.episode_number}</div>
                                 ))
                             }
                             </div>

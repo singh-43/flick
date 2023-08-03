@@ -38,7 +38,6 @@ const OfficialVideos = ({ data, loading }) => {
 
     if(container?.length > 0){
         for(let i=0; i<container?.length; i++){
-            // console.log(container[i]);
             for(let k=0 ; k<container?.[i]?.length; k++){
                 if( container?.[i]?.[k]?.official === true ){
                     video.push(container?.[i]?.[k]);
