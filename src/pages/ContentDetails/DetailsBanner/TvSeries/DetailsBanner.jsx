@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import "./DetailsBanner.scss";
-import { url, openInNewTab, toHoursAndMinutes } from '../../../../utils/constants';
+import { url, toHoursAndMinutes } from '../../../../utils/constants';
 import Genres from '../../../../components/genres/Genres';
 import Img from '../../../../components/lazyLoadImage/Img';
 import ContentWrapper from '../../../../components/contentWrapper/ContentWrapper';
@@ -174,7 +174,7 @@ const DetailsBanner = ({ data, loading, videos, credits, id }) => {
                                             <div className='play_movie'
                                                 onClick={() => {
                                                     let seriesName = name?.split(': ').join('-').split(' ').join('-').split('--').join('').split(':').join('-').split('.-').join('-');
-                                                    navigate(`/series/${id}/${seriesName}/streaming-online`)
+                                                    navigate(`/series/${id}/${seriesName}/streaming-online`);
                                                 }}
                                             >
                                                 Watch Online
