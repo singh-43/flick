@@ -1,3 +1,1 @@
-https://flick-sigma.vercel.app
-
-https://justflick.netlify.app
+https://devoeded.netlify.app
