@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import "./DetailsBanner.scss";
-import { url, toHoursAndMinutes } from '../../../../utils/constants';
+import { url, toHoursAndMinutes, openInNewTab } from '../../../../utils/constants';
 import Genres from '../../../../components/genres/Genres';
 import Img from '../../../../components/lazyLoadImage/Img';
 import ContentWrapper from '../../../../components/contentWrapper/ContentWrapper';
