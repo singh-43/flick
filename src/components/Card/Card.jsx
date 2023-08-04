@@ -23,7 +23,7 @@ const MovieCard = ({ data, fromSearch, mediaType }) => {
             <div className="posterBlock"
                 onClick={() =>{
                     let title = ( data?.title || data?.name )?.split(': ').join('-').split(' ').join('-').split('--').join('').split(':').join('-').split('.-').join('-');
-                    navigate(openInNewTab(`/${data.media_type || mediaType}/${data.id}/${title}`));
+                    navigate(`/${data.media_type || mediaType}/${data.id}/${title}`);
                 }}
             >
                 <Img className="posterImg" 
