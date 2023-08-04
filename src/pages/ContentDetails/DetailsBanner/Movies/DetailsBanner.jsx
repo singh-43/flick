@@ -227,7 +227,7 @@ const DetailsBanner = ({ data, loading, videos, credits, id }) => {
                                                     <div
                                                         className="playbtn"
                                                         onClick={() => {
-                                                            navigate(openInNewTab(`https://www.youtube.com/watch?v=${video}`))
+                                                            navigate(`https://www.youtube.com/watch?v=${video}`)
                                                         }}
                                                     >
                                                         <PlayIcon />
