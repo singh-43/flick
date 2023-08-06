@@ -31,9 +31,22 @@
     color: white;
   }
   
-  ::-webkit-scrollbar {
-    display: none;
-  }
+  // ::-webkit-scrollbar {
+  //   display: none;
+  // }
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: black;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #959595;
+  border-radius: 13px;
+}
   
   // @-moz-document url-prefix() {
   //   html,
