@@ -1,6 +1,9 @@
 .MoviesOfficialVideos {
     position: relative;
     margin-bottom: 20px;
+    ::-webkit-scrollbar {
+        width: 7px;
+    }
     .sectionHeading {
         font-size: 24px;
         color: white;
