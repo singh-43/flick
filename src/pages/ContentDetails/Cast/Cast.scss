@@ -1,6 +1,18 @@
 .castSection {
     position: relative;
     margin-bottom: 15px;
+    ::-webkit-scrollbar {
+        width: 7px;
+    }
+  
+  ::-webkit-scrollbar-track {
+    background: black;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #959595;
+    border-radius: 13px;
+  }
     .sectionHeading {
         font-size: 24px;
         color: white;
