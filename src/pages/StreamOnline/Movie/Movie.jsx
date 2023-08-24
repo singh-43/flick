@@ -19,7 +19,7 @@ const Movie = () => {
     let currentPart = useRef();
     let collection_id;
     let collection = [];
-    const serverList = [`https://multiembed.mov/?video_id=${id}&tmdb=1`,`https://vidsrc.to/embed/movie/${id}` , `https://www.2embed.cc/embed/${id}`, `https://vidsrc.me/embed/movie?tmdb=${id}`, `https://remotestre.am/e/?tmdb=${id}`];
+    const serverList = [`https://multiembed.mov/?video_id=${id}&tmdb=1`, `https://vidsrc.to/embed/movie/${id}`, `https://www.2embed.cc/embed/${id}`, `https://vidsrc.me/embed/movie?tmdb=${id}`, `https://remotestre.am/e/?tmdb=${id}`];
 
     const { data, loading } = useFetch(`/movie/${id}`);
     if(data?.belongs_to_collection !== null){
