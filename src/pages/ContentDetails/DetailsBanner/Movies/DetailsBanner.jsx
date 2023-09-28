@@ -198,7 +198,7 @@ const DetailsBanner = ({ data, loading, videos, credits, id }) => {
                                             <div className='play_movie'
                                                 onClick={() => {
                                                     let movieName = name?.split(': ').join('-').split(' ').join('-').split('--').join('').split(':').join('-').split('.-').join('-');
-                                                    openInNewTab(navigate(`/${id}/${movieName}/streaming-online`));
+                                                    navigate(`/${id}/${movieName}/streaming-online`);
                                                 }}
                                             >
                                                 Watch Online
@@ -227,7 +227,7 @@ const DetailsBanner = ({ data, loading, videos, credits, id }) => {
                                                     <div
                                                         className="playbtn"
                                                         onClick={() => {
-                                                            navigate(`https://www.youtube.com/watch?v=${video}`)
+                                                            navigate(openInNewTab(`https://www.youtube.com/watch?v=${video}`))
                                                         }}
                                                     >
                                                         <PlayIcon />
