@@ -73,8 +73,8 @@ const Cast = ({ data, loading }) => {
                                                 }
                                             />
                                         </div>
-                                        <div className="name" style={{width: 200}}>{item.name}</div>
-                                        <div className="character ellipsis" style={{width: 200}}>
+                                        <div className="name">{item.name}</div>
+                                        <div className="character ellipsis">
                                             {item.character}
                                         </div>
                                     </div>
