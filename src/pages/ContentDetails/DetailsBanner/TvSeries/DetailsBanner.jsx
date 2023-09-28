@@ -174,7 +174,7 @@ const DetailsBanner = ({ data, loading, videos, credits, id }) => {
                                             <div className='play_movie'
                                                 onClick={() => {
                                                     let seriesName = name?.split(': ').join('-').split(' ').join('-').split('--').join('').split(':').join('-').split('.-').join('-');
-                                                    openInNewTab(navigate(`/series/${id}/${seriesName}/streaming-online`));
+                                                    navigate(`/series/${id}/${seriesName}/streaming-online`);
                                                 }}
                                             >
                                                 Watch Online
