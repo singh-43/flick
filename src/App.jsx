@@ -31,7 +31,7 @@ function App() {
                     <Route path="/collection/:id/:title" element={<MoviesListData />}></Route>
                     <Route path="/tv/:id/:title/seasons" element={<SeasonsData />}></Route>
                     <Route path="/tv/:id/:title/season/:season_number" element={<SeasonData />}></Route>
-                    <Route path="*" element={<PageNotFound />} />
+                    <Route path="*" element={<h1>Error Page</h1>}></Route>
                   </Routes>
               <Footer />
             </BrowserRouter>
