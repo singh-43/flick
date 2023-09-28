@@ -1,18 +1,6 @@
 .castSection {
     position: relative;
     margin-bottom: 20px;
-    ::-webkit-scrollbar {
-        display: none;
-    }
-  
-  ::-webkit-scrollbar-track {
-    background: black;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background: #959595;
-    border-radius: 13px;
-  }
     .sectionHeading {
         font-size: 24px;
         color: white;
@@ -40,11 +28,13 @@
                 }
             }
             .name {
+                width: 125px;
                 font-size: 14px;
                 line-height: 20px;
                 font-weight: 600;
             }
             .character {
+                width: 125px;
                 font-size: 14px;
                 line-height: 20px;
                 opacity: 0.5;
@@ -95,6 +85,9 @@
             }
         }
     }
+    ::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 @media only screen and (min-width: 700px) {
@@ -110,10 +103,12 @@
                     margin-bottom: 25px;
                 }
                 .name {
+                    width: 175px;
                     font-size: 18px;
                     line-height: 24px;
                 }
                 .character {
+                    width: 175px;
                     font-size: 16px;
                     line-height: 24px;
                 }
