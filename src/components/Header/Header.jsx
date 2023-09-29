@@ -19,7 +19,8 @@ const Header = () => {
 
     const searchQueryHandler = (event) => {
         if(event.key === "Enter" && query.length > 0){
-            navigate(`/search/${query}`);
+            let title = ( query )?.split(': ').join('-').split(' ').join('-').split('--').join('').split(':').join('-').split('.-').join('-');
+            navigate(`/search/${title}`);
             setShowSearch(false)
         }
     }
