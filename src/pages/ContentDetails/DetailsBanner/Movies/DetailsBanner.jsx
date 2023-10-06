@@ -194,7 +194,7 @@ const DetailsBanner = ({ data, loading, videos, credits, id }) => {
                                             alt=''
                                         />
                                         {
-                                            ( data?.status === "Released" && dayjs(releaseDate).format("YYYY-MM-DD") < dayjs().format("YYYY-MM-DD") ) &&
+                                            ( data?.status === "Released" && dayjs(releaseDate).format("YYYY-MM-DD") <= dayjs().format("YYYY-MM-DD") ) &&
                                             <div className='play_movie'
                                                 onClick={() => {
                                                     let movieName = name?.split(': ').join('-').split(' ').join('-').split('--').join('').split(':').join('-').split('.-').join('-');
